@@ -153,10 +153,28 @@
       cursor:pointer;
     }
     .dot.active{ background:var(--accent); }
+    .photo-block{
+      margin-top:16px;
+    }
+    .photo-block img{
+      width:100%;
+      border-radius:14px;
+      box-shadow:0 10px 22px rgba(0,0,0,0.08);
+    }
+    .caption{
+      margin-top:8px;
+      font-size:14px;
+      line-height:1.7;
+      color:var(--text);
+    }
   </style>
 </head>
 
 <body>
+  <audio id="bgm" preload="auto" loop>
+    <source src="bgm.mp3" type="audio/mpeg">
+  </audio>
+
 
   <!-- Page 1（不動） -->
   <section id="p1">
@@ -170,8 +188,8 @@
     <!-- Page：第 0 次（我們相遇的那一天） -->
   <section id="first-day">
     <div class="card">
-      <h2>第 0 次</h2>
-      <p class="muted">我們還不知道，這會變成後來的故事。</p>
+      <h2>我們的開始</h2>
+      <p class="muted">或許當時我們還不知道，這會變成後來的故事。</p>
   
       <div style="margin-top:20px;">
         <img src="first-day.jpg"
@@ -194,92 +212,66 @@
   <!-- Page X：29 次見面（已換成：卡片內多張照片 + 每張一句話） -->
   <section id="memories">
     <div class="card">
-      <h2>我們的每次見面</h2>
-      <p class="muted">左右滑動卡片；每張卡片內可以切換照片。</p>
-
+      <h2>我們的每次次見面</h2>
+      <p class="muted">從第 1 次，到第 29 次。</p>
+  
       <div class="timeline">
-
-        <!-- 第 1 次（示範：2 張；你可自行增減） -->
-        <div class="memory-card" data-slider>
-          <div class="memory-title">
-            <span>我們的第 1 次見面，也是我們在一起的那天。</span>
-            <span class="memory-sub">2025.01.24</span>
+  
+        <!-- 第 1 次 -->
+        <div class="memory-card">
+          <div class="memory-title">第 1 次見面，也是我們在一起的那天。</div>
+  
+          <div class="photo-block">
+            <img src="m1-1.jpg">
+            <div class="caption">我們的第一餐，但是我開始跟你聊政治。</div>
           </div>
-
-          <div class="slider">
-            <button class="nav prev" type="button" aria-label="上一張">‹</button>
-            <button class="nav next" type="button" aria-label="下一張">›</button>
-
-            <div class="slide active">
-              <img src="m1-1.jpg" alt="第1次-1">
-              <div class="caption">我們的第一餐，結果我開始跟你聊政治。</div>
-            </div>
-            <div class="slide">
-              <img src="m1-2.jpg" alt="第1次-2">
-              <div class="caption">我們當天就在一起了，還在湖邊牽起我們的手。</div>
-            </div>
-
-            <div class="dots" aria-hidden="true"></div>
+  
+          <div class="photo-block">
+            <img src="m1-2.jpg">
+            <div class="caption">我們在一起了，在冷冷的祕密基地牽手。</div>
           </div>
         </div>
-
-        <!-- 第 2 次（示範：2 張） -->
-        <div class="memory-card" data-slider>
-          <div class="memory-title">
-            <span>第 2 次見面，第一次慶祝你的生日，還有情人節。</span>
-            <span class="memory-sub">2025.02.16</span>
+  
+        <!-- 第 2 次 -->
+        <div class="memory-card">
+          <div class="memory-title">第 2 次見面，第一次慶祝你的生日，還有情人節。</div>
+  
+          <div class="photo-block">
+            <img src="m2-1.jpg">
+            <div class="caption">我們的第一張合照。</div>
           </div>
 
-          <div class="slider">
-            <button class="nav prev" type="button" aria-label="上一張">‹</button>
-            <button class="nav next" type="button" aria-label="下一張">›</button>
-
-            <div class="slide active">
-              <img src="m2-1.jpg" alt="第2次-1">
-              <div class="caption">我們的第一張合照。</div>
-            </div>
-            <div class="slide">
-              <img src="m2-2.jpg" alt="第2次-2">
-              <div class="caption">吃宅勤美慶祝。</div>
-            </div>
-
-            <div class="dots" aria-hidden="true"></div>
+          <div class="photo-block">
+            <img src="m2-2.jpg">
+            <div class="caption">我們的慶祝大餐，宅勤美，還在萬客什鍋前面親親。</div>
           </div>
         </div>
-
-        <!-- 第 3 次（示範：1 張） -->
-        <div class="memory-card" data-slider>
-          <div class="memory-title">
-            <span>第 3 次見面，那是你第一次到新竹找我。</span>
-            <span class="memory-sub">2025.02.21</span>
+  
+        <!-- 第 3 次 -->
+        <div class="memory-card">
+          <div class="memory-title">第 3 次見面，你第一次到新竹找我。</div>
+  
+          <div class="photo-block">
+            <img src="m2-1.jpg">
+            <div class="caption">新竹公園湖邊的13加上飛揚的髮尾。</div>
           </div>
 
-          <div class="slider">
-            <button class="nav prev" type="button" aria-label="上一張">‹</button>
-            <button class="nav next" type="button" aria-label="下一張">›</button>
-
-            <div class="slide active">
-              <img src="m3-1.jpg" alt="第3次-1">
-              <div class="caption">新竹公園的13加上飛揚的髮尾。</div>
-            </div>
-            <div class="slide">
-              <img src="m3-2.jpg" alt="第2次-2">
-              <div class="caption">我們在湖邊合照，我們都笑得好開心。</div>
-            </div>
-
-            <div class="dots" aria-hidden="true"></div>
+          <div class="photo-block">
+            <img src="m2-2.jpg">
+            <div class="caption">我們都笑得很燦爛。</div>
           </div>
         </div>
-
-        <!-- 你照著上面格式複製到第 29 次即可 -->
-        <!-- 建議檔名：m4-1.jpg、m4-2.jpg ... m29-1.jpg -->
-
+  
       </div>
-
+  
       <div class="divider"></div>
-      <a class="btn" href="#p4">繼續往下</a>
+      <div class="row">
+        <a class="btn secondary" href="#first-day">上一頁</a>
+        <a class="btn" href="#p4">下一頁</a>
+      </div>
     </div>
   </section>
+
 
   <!-- Page 4 -->
   <section id="p4">
@@ -320,74 +312,48 @@
     </div>
   </section>
 
-  <!-- 讓 29 次見面卡片內輪播會動 -->
-  <script>
-    function initSliders(){
-      const cards = document.querySelectorAll('[data-slider]');
-      cards.forEach(card => {
-        const slides = Array.from(card.querySelectorAll('.slide'));
-        const prevBtn = card.querySelector('.prev');
-        const nextBtn = card.querySelector('.next');
-        const dotsWrap = card.querySelector('.dots');
-
-        // 若只有 1 張，隱藏左右鍵
-        if (slides.length <= 1){
-          if (prevBtn) prevBtn.style.display = 'none';
-          if (nextBtn) nextBtn.style.display = 'none';
+    <script>
+    (function(){
+      const bgm = document.getElementById('bgm');
+      const p5 = document.getElementById('p5');
+  
+      // 由於自動播放限制：用「使用者第一次互動」啟動音樂
+      async function startBgmOnce(){
+        if (!bgm) return;
+        if (!bgm.paused) return; // 已在播就不重複
+        try{
+          bgm.volume = 0.35;      // 你可調 0.0 ~ 1.0
+          await bgm.play();
+          document.removeEventListener('click', startBgmOnce);
+          document.removeEventListener('touchstart', startBgmOnce);
+          document.removeEventListener('keydown', startBgmOnce);
+        }catch(e){
+          // 播放失敗通常是瀏覽器限制；等下一次互動再試
         }
-
-        let idx = 0;
-
-        // build dots
-        dotsWrap.innerHTML = '';
-        slides.forEach((_, i) => {
-          const d = document.createElement('div');
-          d.className = 'dot' + (i === 0 ? ' active' : '');
-          dotsWrap.appendChild(d);
-        });
-        const dots = Array.from(dotsWrap.querySelectorAll('.dot'));
-
-        // 若只有 1 張，隱藏 dots
-        if (dots.length <= 1){
-          dotsWrap.style.display = 'none';
-        }
-
-        function render(){
-          slides.forEach((s, i) => s.classList.toggle('active', i === idx));
-          dots.forEach((d, i) => d.classList.toggle('active', i === idx));
-        }
-
-        function go(delta){
-          if (slides.length <= 1) return;
-          idx = (idx + delta + slides.length) % slides.length;
-          render();
-        }
-
-        if (prevBtn) prevBtn.addEventListener('click', () => go(-1));
-        if (nextBtn) nextBtn.addEventListener('click', () => go(1));
-
-        // tap dots
-        dots.forEach((d, i) => d.addEventListener('click', () => {
-          idx = i; render();
-        }));
-
-        // swipe on mobile (卡片內左右滑換圖)
-        let startX = null;
-        card.addEventListener('touchstart', (e) => {
-          startX = e.touches[0].clientX;
-        }, {passive:true});
-
-        card.addEventListener('touchend', (e) => {
-          if (startX === null) return;
-          const endX = e.changedTouches[0].clientX;
-          const dx = endX - startX;
-          if (Math.abs(dx) > 40) go(dx > 0 ? -1 : 1);
-          startX = null;
-        }, {passive:true});
-      });
-    }
-    document.addEventListener('DOMContentLoaded', initSliders);
+      }
+  
+      // 第一次互動就播放（你按 Enter/點按鈕/點頁面都算）
+      document.addEventListener('click', startBgmOnce);
+      document.addEventListener('touchstart', startBgmOnce);
+      document.addEventListener('keydown', startBgmOnce);
+  
+      // 進入彩蛋頁（p5）就停止並重置到開頭
+      if (p5 && 'IntersectionObserver' in window){
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting){
+              if (bgm && !bgm.paused){
+                bgm.pause();
+                bgm.currentTime = 0;
+              }
+            }
+          });
+        }, { threshold: 0.6 }); // p5 露出 60% 就算進入
+  
+        io.observe(p5);
+      }
+    })();
   </script>
-
+  
 </body>
 </html>
