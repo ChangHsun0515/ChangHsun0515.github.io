@@ -3,10 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>For You</title>
+  <title>給 13</title>
   <style>
     :root{
-      --bg:#f7f7f7; --card:#ffffff; --text:#1f1f1f; --muted:#666; --accent:#111;
+      --bg:#f3e8ea;
+      --card:#ffffff;
+      --text:#2b2b2b;
+      --muted:#7a6a6f;
+      --accent:#b86b77;
     }
     *{box-sizing:border-box}
     body{
@@ -54,53 +58,202 @@
       background:transparent; border:none; color:var(--muted);
       cursor:pointer; margin-top:8px; font-size:13px; text-decoration:underline;
     }
+
+    /* ====== 29次見面：卡片 + 卡片內輪播 ====== */
+    .timeline{
+      display:flex;
+      gap:18px;
+      overflow-x:auto;
+      padding:8px 2px 14px;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+    }
+    .timeline::-webkit-scrollbar{ height:6px; }
+    .timeline::-webkit-scrollbar-thumb{
+      background:rgba(0,0,0,.18);
+      border-radius:999px;
+    }
+
+    .memory-card{
+      min-width:290px;
+      width:290px;
+      background:var(--card);
+      border:1px solid rgba(0,0,0,.06);
+      border-radius:18px;
+      padding:16px;
+      box-shadow:0 12px 26px rgba(0,0,0,.06);
+      scroll-snap-align:center;
+      text-align:left;
+    }
+    .memory-title{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-weight:700;
+      font-size:14px;
+      color:var(--text);
+    }
+    .memory-sub{
+      font-size:12px;
+      color:var(--muted);
+      margin-top:2px;
+    }
+
+    .slider{
+      position:relative;
+      margin-top:12px;
+    }
+    .slide{ display:none; }
+    .slide.active{ display:block; }
+
+    .slide img{
+      width:100%;
+      border-radius:14px;
+      box-shadow:0 10px 20px rgba(0,0,0,.08);
+      display:block;
+    }
+    .caption{
+      margin-top:10px;
+      font-size:14px;
+      line-height:1.7;
+      color:var(--text);
+    }
+
+    .nav{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      border:none;
+      width:34px;
+      height:34px;
+      border-radius:999px;
+      cursor:pointer;
+      background:rgba(255,255,255,.88);
+      box-shadow:0 10px 18px rgba(0,0,0,.10);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:18px;
+      line-height:1;
+    }
+    .nav:hover{ background:#fff; }
+    .nav.prev{ left:10px; }
+    .nav.next{ right:10px; }
+
+    .dots{
+      display:flex;
+      gap:6px;
+      justify-content:center;
+      margin-top:10px;
+    }
+    .dot{
+      width:6px; height:6px;
+      border-radius:999px;
+      background:rgba(0,0,0,.18);
+      cursor:pointer;
+    }
+    .dot.active{ background:var(--accent); }
   </style>
 </head>
+
 <body>
 
-  <!-- Page 1 -->
+  <!-- Page 1（不動） -->
   <section id="p1">
     <div class="card">
-      <h1>給你，<br>在你 ___ 歲這一年。</h1>
+      <h1>給你，<br>在你 25 歲這一年。</h1>
       <p class="muted">（生日快樂 & 情人節快樂）</p>
-      <a class="btn" href="#p2">Enter</a>
+      <a class="btn" href="#memories">Enter</a>
     </div>
   </section>
 
-  <!-- Page 2 -->
-  <section id="p2">
+  <!-- Page X：29 次見面（已換成：卡片內多張照片 + 每張一句話） -->
+  <section id="memories">
     <div class="card">
-      <h2>這一年，我眼中的你</h2>
-      <p>你在累的時候，還是會把事情做完。</p>
-      <p>你壓力很大的時候，仍然會留一點溫柔給我。</p>
-      <p>我最欣賞的是：你不是完美，但你很真。</p>
+      <h2>我們的 29 次見面</h2>
+      <p class="muted">左右滑動卡片；每張卡片內可以切換照片。</p>
+
+      <div class="timeline">
+
+        <!-- 第 1 次（示範：2 張；你可自行增減） -->
+        <div class="memory-card" data-slider>
+          <div class="memory-title">
+            <span>第 1 次</span>
+            <span class="memory-sub">（可填日期/地點）</span>
+          </div>
+
+          <div class="slider">
+            <button class="nav prev" type="button" aria-label="上一張">‹</button>
+            <button class="nav next" type="button" aria-label="下一張">›</button>
+
+            <div class="slide active">
+              <img src="m1-1.jpg" alt="第1次-1">
+              <div class="caption">其實我那天有點緊張。</div>
+            </div>
+            <div class="slide">
+              <img src="m1-2.jpg" alt="第1次-2">
+              <div class="caption">但我一直覺得你很好看。</div>
+            </div>
+
+            <div class="dots" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <!-- 第 2 次（示範：2 張） -->
+        <div class="memory-card" data-slider>
+          <div class="memory-title">
+            <span>第 2 次</span>
+            <span class="memory-sub"></span>
+          </div>
+
+          <div class="slider">
+            <button class="nav prev" type="button" aria-label="上一張">‹</button>
+            <button class="nav next" type="button" aria-label="下一張">›</button>
+
+            <div class="slide active">
+              <img src="m2-1.jpg" alt="第2次-1">
+              <div class="caption">那天的你笑得很自然。</div>
+            </div>
+            <div class="slide">
+              <img src="m2-2.jpg" alt="第2次-2">
+              <div class="caption">我們開始聊得比較自在了。</div>
+            </div>
+
+            <div class="dots" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <!-- 第 3 次（示範：1 張） -->
+        <div class="memory-card" data-slider>
+          <div class="memory-title">
+            <span>第 3 次</span>
+            <span class="memory-sub"></span>
+          </div>
+
+          <div class="slider">
+            <button class="nav prev" type="button" aria-label="上一張">‹</button>
+            <button class="nav next" type="button" aria-label="下一張">›</button>
+
+            <div class="slide active">
+              <img src="m3-1.jpg" alt="第3次-1">
+              <div class="caption">我們開始熟起來。</div>
+            </div>
+
+            <div class="dots" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <!-- 你照著上面格式複製到第 29 次即可 -->
+        <!-- 建議檔名：m4-1.jpg、m4-2.jpg ... m29-1.jpg -->
+
+      </div>
 
       <div class="divider"></div>
-      <div class="row">
-        <a class="btn secondary" href="#p1">上一頁</a>
-        <a class="btn" href="#p3">下一頁</a>
-      </div>
+      <a class="btn" href="#p4">繼續往下</a>
     </div>
   </section>
 
-  <!-- Page 3 -->
-  <section id="p3">
-    <div class="card">
-      <h2>我們的時間</h2>
-      <p>第一次見面 —— 我其實有點緊張。</p>
-      <p>變熟的那段時間 —— 我開始期待你的訊息。</p>
-      <p>在一起那天 —— 我知道我選對人。</p>
-      <p>現在 —— 我希望未來也一直是你。</p>
-
-      <div class="divider"></div>
-      <div class="row">
-        <a class="btn secondary" href="#p2">上一頁</a>
-        <a class="btn" href="#p4">下一頁</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Page 4 -->
+  <!-- Page 4（不動；但你原本上一頁 href="#p3" 會失效，我保留原樣但建議你改成 memories） -->
   <section id="p4">
     <div class="card">
       <h2>未來聲明</h2>
@@ -115,26 +268,23 @@
 
       <div class="divider"></div>
       <div class="row">
+        <!-- 你原本是 #p3，但現在沒有 p3；如果不想動其他頁就先留著，會跳不到。
+             若你願意修正，改成 href="#memories" 才合理。 -->
         <a class="btn secondary" href="#p3">上一頁</a>
         <a class="btn" href="#p5">下一頁</a>
       </div>
     </div>
   </section>
 
-  <!-- Page 5 / Secret -->
+  <!-- Page 5 / Secret（不動） -->
   <section id="p5">
     <div class="card">
       <h2>彩蛋</h2>
       <p>這段留給你，只有你。</p>
 
-      <!-- 放語音：把 yourvoice.mp3 上傳到 repo 根目錄，檔名一致即可 -->
       <audio controls style="width:min(520px, 100%); margin-top:12px;">
         <source src="yourvoice.mp3" type="audio/mpeg">
       </audio>
-
-      <p class="muted" style="margin-top:14px;">
-        如果你暫時沒有語音檔，也可以先把這段 audio 刪掉。
-      </p>
 
       <div class="divider"></div>
       <div class="row">
@@ -143,6 +293,75 @@
       </div>
     </div>
   </section>
+
+  <!-- 讓 29 次見面卡片內輪播會動 -->
+  <script>
+    function initSliders(){
+      const cards = document.querySelectorAll('[data-slider]');
+      cards.forEach(card => {
+        const slides = Array.from(card.querySelectorAll('.slide'));
+        const prevBtn = card.querySelector('.prev');
+        const nextBtn = card.querySelector('.next');
+        const dotsWrap = card.querySelector('.dots');
+
+        // 若只有 1 張，隱藏左右鍵
+        if (slides.length <= 1){
+          if (prevBtn) prevBtn.style.display = 'none';
+          if (nextBtn) nextBtn.style.display = 'none';
+        }
+
+        let idx = 0;
+
+        // build dots
+        dotsWrap.innerHTML = '';
+        slides.forEach((_, i) => {
+          const d = document.createElement('div');
+          d.className = 'dot' + (i === 0 ? ' active' : '');
+          dotsWrap.appendChild(d);
+        });
+        const dots = Array.from(dotsWrap.querySelectorAll('.dot'));
+
+        // 若只有 1 張，隱藏 dots
+        if (dots.length <= 1){
+          dotsWrap.style.display = 'none';
+        }
+
+        function render(){
+          slides.forEach((s, i) => s.classList.toggle('active', i === idx));
+          dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+        }
+
+        function go(delta){
+          if (slides.length <= 1) return;
+          idx = (idx + delta + slides.length) % slides.length;
+          render();
+        }
+
+        if (prevBtn) prevBtn.addEventListener('click', () => go(-1));
+        if (nextBtn) nextBtn.addEventListener('click', () => go(1));
+
+        // tap dots
+        dots.forEach((d, i) => d.addEventListener('click', () => {
+          idx = i; render();
+        }));
+
+        // swipe on mobile (卡片內左右滑換圖)
+        let startX = null;
+        card.addEventListener('touchstart', (e) => {
+          startX = e.touches[0].clientX;
+        }, {passive:true});
+
+        card.addEventListener('touchend', (e) => {
+          if (startX === null) return;
+          const endX = e.changedTouches[0].clientX;
+          const dx = endX - startX;
+          if (Math.abs(dx) > 40) go(dx > 0 ? -1 : 1);
+          startX = null;
+        }, {passive:true});
+      });
+    }
+    document.addEventListener('DOMContentLoaded', initSliders);
+  </script>
 
 </body>
 </html>
