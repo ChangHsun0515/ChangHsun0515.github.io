@@ -1,96 +1,148 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="zh-Hant">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For 13</title>
-
-<style>
-body{
-    margin:0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background:#f8f8f8;
-    color:#222;
-    text-align:center;
-}
-
-.section{
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    padding:40px;
-    opacity:0;
-    transform:translateY(20px);
-    transition:1s;
-}
-
-.section.active{
-    opacity:1;
-    transform:translateY(0);
-}
-
-button{
-    padding:10px 20px;
-    border:none;
-    background:#222;
-    color:white;
-    cursor:pointer;
-    margin-top:20px;
-}
-
-.hidden{
-    display:none;
-}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>For You</title>
+  <style>
+    :root{
+      --bg:#f7f7f7; --card:#ffffff; --text:#1f1f1f; --muted:#666; --accent:#111;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans TC",sans-serif;
+      background:var(--bg); color:var(--text);
+      scroll-behavior:smooth;
+    }
+    section{
+      min-height:100vh;
+      display:flex; align-items:center; justify-content:center;
+      padding:48px 18px;
+    }
+    .card{
+      width:min(820px, 92vw);
+      background:var(--card);
+      border:1px solid rgba(0,0,0,.06);
+      border-radius:18px;
+      padding:42px 28px;
+      box-shadow:0 12px 28px rgba(0,0,0,.06);
+      text-align:center;
+    }
+    h1{font-size:34px; margin:0 0 16px; letter-spacing:.5px}
+    h2{font-size:22px; margin:0 0 14px}
+    p{margin:10px 0; line-height:1.8; color:var(--text)}
+    .muted{color:var(--muted); font-size:14px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 18px;
+      border-radius:999px;
+      border:1px solid rgba(0,0,0,.12);
+      background:var(--accent);
+      color:#fff;
+      cursor:pointer;
+      margin-top:18px;
+      text-decoration:none;
+      user-select:none;
+    }
+    .btn.secondary{
+      background:#fff; color:var(--text);
+    }
+    .row{display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
+    .divider{height:1px; background:rgba(0,0,0,.08); margin:18px 0}
+    /* 小彩蛋按鈕做得低調一點 */
+    .secret-btn{
+      background:transparent; border:none; color:var(--muted);
+      cursor:pointer; margin-top:8px; font-size:13px; text-decoration:underline;
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="section active" id="page1">
-    <h1>給你，<br>在你 25 歲這一年。</h1>
-    <button onclick="nextPage()">Enter</button>
-</div>
+  <!-- Page 1 -->
+  <section id="p1">
+    <div class="card">
+      <h1>給你，<br>在你 ___ 歲這一年。</h1>
+      <p class="muted">（生日快樂 & 情人節快樂）</p>
+      <a class="btn" href="#p2">Enter</a>
+    </div>
+  </section>
 
-<div class="section" id="page2">
-    <h2>這一年，我眼中的你</h2>
-    <p>你坐在電腦前很久不動的樣子，其實很帥。</p>
-    <p>你壓力很大的時候，還是會記得問我有沒有吃飯。</p>
-    <button onclick="nextPage()">下一頁</button>
-</div>
+  <!-- Page 2 -->
+  <section id="p2">
+    <div class="card">
+      <h2>這一年，我眼中的你</h2>
+      <p>你在累的時候，還是會把事情做完。</p>
+      <p>你壓力很大的時候，仍然會留一點溫柔給我。</p>
+      <p>我最欣賞的是：你不是完美，但你很真。</p>
 
-<div class="section" id="page3">
-    <h2>我們的時間</h2>
-    <p>一開始聊天 —— 我其實有點緊張。</p>
-    <p>在一起那天 —— 我知道我選對人。</p>
-    <p>現在 —— 我希望未來還是你。</p>
-    <button onclick="showSecret()">你確定要點？</button>
-</div>
+      <div class="divider"></div>
+      <div class="row">
+        <a class="btn secondary" href="#p1">上一頁</a>
+        <a class="btn" href="#p3">下一頁</a>
+      </div>
+    </div>
+  </section>
 
-<div class="section hidden" id="secret">
-    <h2>生日快樂。</h2>
-    <p>不管你成為什麼樣的人，我都希望坐在你旁邊。</p>
-    <audio controls>
+  <!-- Page 3 -->
+  <section id="p3">
+    <div class="card">
+      <h2>我們的時間</h2>
+      <p>第一次見面 —— 我其實有點緊張。</p>
+      <p>變熟的那段時間 —— 我開始期待你的訊息。</p>
+      <p>在一起那天 —— 我知道我選對人。</p>
+      <p>現在 —— 我希望未來也一直是你。</p>
+
+      <div class="divider"></div>
+      <div class="row">
+        <a class="btn secondary" href="#p2">上一頁</a>
+        <a class="btn" href="#p4">下一頁</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page 4 -->
+  <section id="p4">
+    <div class="card">
+      <h2>未來聲明</h2>
+      <p>如果有一天你懷疑自己，</p>
+      <p>我希望你記得：你已經走得很遠了。</p>
+      <p>我想做的不是把你變成誰，</p>
+      <p>而是陪你走向你想成為的樣子。</p>
+
+      <button class="secret-btn" onclick="document.getElementById('p5').scrollIntoView({behavior:'smooth'});">
+        你確定要點？
+      </button>
+
+      <div class="divider"></div>
+      <div class="row">
+        <a class="btn secondary" href="#p3">上一頁</a>
+        <a class="btn" href="#p5">下一頁</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page 5 / Secret -->
+  <section id="p5">
+    <div class="card">
+      <h2>彩蛋</h2>
+      <p>這段留給你，只有你。</p>
+
+      <!-- 放語音：把 yourvoice.mp3 上傳到 repo 根目錄，檔名一致即可 -->
+      <audio controls style="width:min(520px, 100%); margin-top:12px;">
         <source src="yourvoice.mp3" type="audio/mpeg">
-    </audio>
-</div>
+      </audio>
 
-<script>
-let current = 1;
+      <p class="muted" style="margin-top:14px;">
+        如果你暫時沒有語音檔，也可以先把這段 audio 刪掉。
+      </p>
 
-function nextPage(){
-    document.getElementById("page"+current).classList.remove("active");
-    current++;
-    document.getElementById("page"+current).classList.add("active");
-}
-
-function showSecret(){
-    document.getElementById("page3").classList.remove("active");
-    document.getElementById("secret").classList.remove("hidden");
-    document.getElementById("secret").classList.add("active");
-}
-</script>
+      <div class="divider"></div>
+      <div class="row">
+        <a class="btn secondary" href="#p4">回上一頁</a>
+        <a class="btn" href="#p1">回首頁</a>
+      </div>
+    </div>
+  </section>
 
 </body>
 </html>
