@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You</title>
+
+<style>
+body{
+    margin:0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background:#f8f8f8;
+    color:#222;
+    text-align:center;
+}
+
+.section{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+    opacity:0;
+    transform:translateY(20px);
+    transition:1s;
+}
+
+.section.active{
+    opacity:1;
+    transform:translateY(0);
+}
+
+button{
+    padding:10px 20px;
+    border:none;
+    background:#222;
+    color:white;
+    cursor:pointer;
+    margin-top:20px;
+}
+
+.hidden{
+    display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="section active" id="page1">
+    <h1>給你，<br>在你 ___ 歲這一年。</h1>
+    <button onclick="nextPage()">Enter</button>
+</div>
+
+<div class="section" id="page2">
+    <h2>這一年，我眼中的你</h2>
+    <p>你坐在電腦前很久不動的樣子，其實很帥。</p>
+    <p>你壓力很大的時候，還是會記得問我有沒有吃飯。</p>
+    <button onclick="nextPage()">下一頁</button>
+</div>
+
+<div class="section" id="page3">
+    <h2>我們的時間</h2>
+    <p>第一次見面 —— 我其實有點緊張。</p>
+    <p>在一起那天 —— 我知道我選對人。</p>
+    <p>現在 —— 我希望未來還是你。</p>
+    <button onclick="showSecret()">你確定要點？</button>
+</div>
+
+<div class="section hidden" id="secret">
+    <h2>生日快樂。</h2>
+    <p>不管你成為什麼樣的人，我都希望坐在你旁邊。</p>
+    <audio controls>
+        <source src="yourvoice.mp3" type="audio/mpeg">
+    </audio>
+</div>
+
+<script>
+let current = 1;
+
+function nextPage(){
+    document.getElementById("page"+current).classList.remove("active");
+    current++;
+    document.getElementById("page"+current).classList.add("active");
+}
+
+function showSecret(){
+    document.getElementById("page3").classList.remove("active");
+    document.getElementById("secret").classList.remove("hidden");
+    document.getElementById("secret").classList.add("active");
+}
+</script>
+
+</body>
+</html>
