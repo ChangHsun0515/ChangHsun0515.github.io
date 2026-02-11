@@ -108,6 +108,8 @@
 
     .slide img{
       width:100%;
+      height: clamp(240px, 36vw, 340px); /* ✅ 鎖定高度：手機小、桌機大 */
+      object-fit: cover;                 /* ✅ 裁切填滿，不變形 */
       border-radius:14px;
       box-shadow:0 10px 20px rgba(0,0,0,.08);
       display:block;
